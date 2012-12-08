@@ -1,0 +1,21 @@
+<style>
+  .info {width:600px;}
+  a#togglephpinfo {cursor: pointer; cursor: hand;}
+</style>
+
+<h3>Route info table</h3>
+<div id="route" class="info">
+  <div>
+    <ul>
+      <?php foreach($cfginfo['router']['routes'] as $name => $info): ?>
+      <li><?php echo $this->escapeHtml($name . " " . $info['options']['route']) ?></li>
+      <?php endforeach; ?>
+    </ul>
+  </div>
+</div>
+
+<h3>PHP info table</h3>
+<a id="togglephpinfo" class="info">Show/Hide</a>
+<div id="phpinfo" class="info" style="display:none">
+  <?php echo $phpinfo ?>
+</div>

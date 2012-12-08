@@ -21,6 +21,17 @@ class IndexController extends AbstractActionController
 
     public function infoAction()
     {
+        ob_start();
         phpinfo();
+        $phpinfo = ob_get_contents();
+        ob_end_clean();
+
+        $config = $this->getEvent()->getApplication()->getConfig();
+
+        $view = new ViewModel(array(
+                                  'phpinfo' => $phpinfo,
+                                  'cfginfo' => $config,
+                                  ));
+        return $view;
     }
 }
