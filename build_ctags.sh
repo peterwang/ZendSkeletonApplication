@@ -3,8 +3,8 @@
 cwd=`cd $(dirname $0);pwd`
 cd $cwd;
 
-listfile=$cwd/myapp1.LIST
-tagsfile=$cwd/myapp1.TAGS
+listfile=$cwd/LIST
+tagsfile=$cwd/TAGS
 
 find $cwd -iname '*\.php' -type f|grep -v ZendTest > $listfile
 
