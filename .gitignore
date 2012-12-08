@@ -7,5 +7,5 @@ nbproject
 .project
 .settings
 composer.lock
-*.TAGS
-*.LIST
+TAGS
+LIST
