@@ -1,0 +1,32 @@
+<?php
+$title = 'My Bookmarks';
+$this->headTitle($title);
+?>
+<h1><?php echo $this->escapeHtml($title); ?></h1>
+<p>
+    <a href="<?php echo $this->url('bookmark', array('action'=>'add'));?>">Add new bookmark</a>
+</p>
+
+<table class="table">
+<tr>
+    <th>Title</th>
+    <th>Description</th>
+    <th>&nbsp;</th>
+</tr>
+<?php foreach ($bookmarks as $bookmark) : ?>
+<tr>
+    <td>
+        <a target="_blank" href="<?php echo $bookmark->link ?>">
+            <?php echo $this->escapeHtml($bookmark->title);?></a>
+    </td>
+    <td><?php echo $this->escapeHtml($bookmark->description);?></td>
+    <td>
+        <a href="<?php echo $this->url('bookmark',
+            array('action'=>'edit', 'id' => $bookmark->id));?>">Edit</a>
+        <a href="<?php echo $this->url('bookmark',
+            array('action'=>'delete', 'id' => $bookmark->id));?>">Delete</a>
+    </td>
+</tr>
+<?php endforeach; ?>
+</table>
+
