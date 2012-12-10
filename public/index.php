@@ -23,20 +23,23 @@ $serviceManager->setService('ApplicationConfig', $appConfig);
 
 // record all triggered events.
 $allEvents = array();
+$numEvents = 0;
 $sem = $serviceManager->get('SharedEventManager');
 $sem->attach('*', '*', function($e) {
-        global $allEvents;
+        global $allEvents, $numEvents;
+        $numEvents++;
         $allEvents[] = array(
             (string) $e->getName(),
             get_class($e->getTarget()) == 'string' ? ($e->getTarget()) : get_class($e->getTarget()),
             json_encode($e->getParams()),
             );
-    });
+    }, PHP_INT_MAX);
 
 $serviceManager->get('ModuleManager')->loadModules();
 $serviceManager->get('Application')->bootstrap()->run();
 
 // show these infomations at the bottom of the page
 echo '<!-- BEG --><!--' . PHP_EOL;
+echo "trigger $numEvents events in total, here is the detail list:" . PHP_EOL;
 print_r($allEvents);
 echo '--><!-- END -->' . PHP_EOL;
