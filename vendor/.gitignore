@@ -2,5 +2,6 @@
 .composer
 composer
 zendframework
+smarty
 autoload.php
 bin
